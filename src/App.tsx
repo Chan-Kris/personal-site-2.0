@@ -1,19 +1,25 @@
-import { createSignal, onMount, onCleanup, Show, type Component } from 'solid-js';
+import { createSignal, onMount, onCleanup, Show, Switch, Match, type Component } from 'solid-js';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Skills } from './components/Skills';
 import { About } from './components/About';
 import { ProjectsTeaser } from './components/ProjectsTeaser';
 import { ProjectsPage } from './components/ProjectsPage';
+import { AmazonCaseStudyPage } from './components/AmazonCaseStudyPage';
 import { Contact } from './components/Contact';
 
+export type ViewState = 'home' | 'projects' | 'amazon-case-study';
+
 export const App: Component = () => {
-  const [currentView, setCurrentView] = createSignal<'home' | 'projects'>('home');
+  const [currentView, setCurrentView] = createSignal<ViewState>('home');
   const [isScrolled, setIsScrolled] = createSignal(false);
 
-  const navigateTo = (view: 'home' | 'projects', anchor?: string) => {
+  const navigateTo = (view: ViewState, anchor?: string) => {
     setCurrentView(view);
-    if (view === 'projects') {
+    if (view === 'amazon-case-study') {
+      window.location.hash = '#/project/amazon-data';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (view === 'projects') {
       window.location.hash = '#/projects';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
@@ -35,7 +41,15 @@ export const App: Component = () => {
   onMount(() => {
     const syncRouteFromHash = () => {
       const hash = window.location.hash;
-      if (hash === '#/projects' || hash === '#projects') {
+      if (
+        hash === '#/project/amazon-data' ||
+        hash === '#/amazon-data' ||
+        hash === '#project/amazon-data' ||
+        hash === '#amazon-data'
+      ) {
+        setCurrentView('amazon-case-study');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#/projects' || hash === '#projects') {
         setCurrentView('projects');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
@@ -77,7 +91,7 @@ export const App: Component = () => {
         muted
         playsinline
         class={`fixed inset-0 w-full h-full object-cover z-0 pointer-events-none transition-all duration-700 ease-out will-change-transform ${
-          isScrolled() || currentView() === 'projects'
+          isScrolled() || currentView() !== 'home'
             ? 'filter blur-md sm:blur-xl scale-[1.04] opacity-50'
             : 'filter-none scale-100 opacity-100'
         }`}
@@ -91,7 +105,7 @@ export const App: Component = () => {
       {/* Dynamic Ambient Blur & Darkening Overlay */}
       <div
         class={`fixed inset-0 pointer-events-none z-0 transition-all duration-700 ease-out ${
-          isScrolled() || currentView() === 'projects'
+          isScrolled() || currentView() !== 'home'
             ? 'bg-background/50 backdrop-blur-sm'
             : 'bg-transparent'
         }`}
@@ -102,9 +116,22 @@ export const App: Component = () => {
 
       {/* Main Content Area */}
       <main class="relative z-10 flex-1 flex flex-col">
-        <Show
-          when={currentView() === 'projects'}
-          fallback={
+        <Switch>
+          <Match when={currentView() === 'amazon-case-study'}>
+            <AmazonCaseStudyPage
+              onBackToProjects={() => navigateTo('projects')}
+              onBackToHome={() => navigateTo('home', '#home')}
+              onContact={() => navigateTo('home', '#contact')}
+            />
+          </Match>
+          <Match when={currentView() === 'projects'}>
+            <ProjectsPage
+              onBack={() => navigateTo('home', '#home')}
+              onContact={() => navigateTo('home', '#contact')}
+              onOpenAmazonCaseStudy={() => navigateTo('amazon-case-study')}
+            />
+          </Match>
+          <Match when={currentView() === 'home'}>
             <div class="space-y-12">
               <Hero onExploreProjects={() => navigateTo('projects')} />
               <Skills />
@@ -112,13 +139,8 @@ export const App: Component = () => {
               <ProjectsTeaser onExplore={() => navigateTo('projects')} />
               <Contact />
             </div>
-          }
-        >
-          <ProjectsPage
-            onBack={() => navigateTo('home', '#home')}
-            onContact={() => navigateTo('home', '#contact')}
-          />
-        </Show>
+          </Match>
+        </Switch>
       </main>
 
       {/* Footer */}
@@ -136,7 +158,7 @@ export const App: Component = () => {
           </div>
 
           <div>
-            {currentView() === 'projects' ? (
+            {currentView() !== 'home' ? (
               <button
                 type="button"
                 onClick={() => navigateTo('home', '#home')}

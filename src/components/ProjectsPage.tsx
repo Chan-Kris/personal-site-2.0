@@ -3,6 +3,7 @@ import { createSignal, type Component } from 'solid-js';
 interface ProjectsPageProps {
   onBack: () => void;
   onContact: () => void;
+  onOpenAmazonCaseStudy?: () => void;
 }
 
 export const ProjectsPage: Component<ProjectsPageProps> = (props) => {
@@ -59,8 +60,9 @@ export const ProjectsPage: Component<ProjectsPageProps> = (props) => {
         '建立包含事实、组内比较与阈值行动的七维商业分析模型，每日全自动输出可接管报告',
       ],
       techs: ['Python', 'AI Agent', 'Google Sheets API', '可信数据工程', '自动化分析'],
-      linkText: '交流与架构复盘',
-      linkHref: '#contact',
+      linkText: '阅读完整系统复盘与架构',
+      linkHref: '#/project/amazon-data',
+      isCaseStudy: true,
     },
     {
       category: 'data',
@@ -218,15 +220,33 @@ export const ProjectsPage: Component<ProjectsPageProps> = (props) => {
                 ))}
               </div>
 
-              <a
-                href={project.linkHref}
-                target={project.linkHref.startsWith('http') ? '_blank' : '_self'}
-                rel="noreferrer"
-                class="w-full py-3 rounded-full text-xs text-foreground/90 font-medium liquid-glass flex items-center justify-center space-x-2 group-hover:scale-[1.02] transition-transform"
-              >
-                <span>{project.linkText}</span>
-                <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
-              </a>
+              {project.isCaseStudy ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (props.onOpenAmazonCaseStudy) {
+                      props.onOpenAmazonCaseStudy();
+                    } else {
+                      window.location.hash = project.linkHref;
+                    }
+                  }}
+                  class="w-full py-3 rounded-full text-xs text-foreground font-medium liquid-glass flex items-center justify-center space-x-2 group-hover:scale-[1.02] transition-transform cursor-pointer border border-amber-300/30 hover:border-amber-300/60 bg-amber-400/[0.04]"
+                >
+                  <span class="text-amber-300 text-sm">★</span>
+                  <span>{project.linkText}</span>
+                  <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </button>
+              ) : (
+                <a
+                  href={project.linkHref}
+                  target={project.linkHref.startsWith('http') ? '_blank' : '_self'}
+                  rel="noreferrer"
+                  class="w-full py-3 rounded-full text-xs text-foreground/90 font-medium liquid-glass flex items-center justify-center space-x-2 group-hover:scale-[1.02] transition-transform"
+                >
+                  <span>{project.linkText}</span>
+                  <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </a>
+              )}
             </div>
           </div>
         ))}
