@@ -20,7 +20,7 @@ export const ProjectsTeaser: Component<ProjectsTeaserProps> = (props) => {
               精选实践与 <em class="not-italic text-muted-foreground">造物成果</em>
             </h2>
             <p class="text-muted-foreground text-sm sm:text-base leading-relaxed">
-              涵盖 ComfyUI 节点式生成流、无虚拟 DOM 的极致性能全栈 Web 架构、以及工业级 MES / ERP 复杂数据看板等多维度的实践积淀。
+              聚焦高可信电商数据自动化系统、以及无虚拟 DOM 的极致性能全栈 Web 架构两大旗舰实践沉淀。
             </p>
           </div>
 
@@ -38,11 +38,11 @@ export const ProjectsTeaser: Component<ProjectsTeaserProps> = (props) => {
 
         {/* Quick Highlights Pills */}
         <div class="relative z-10 mt-8 pt-6 border-t border-white/[0.06] flex flex-wrap items-center gap-3 text-xs text-muted-foreground font-mono">
-          <span class="text-muted-foreground/50">精选分类：</span>
+          <span class="text-muted-foreground/50">精选实践：</span>
           <span class="px-3 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06]">#亚马逊数据自动化系统</span>
-          <span class="px-3 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06]">#AIGC 视觉管线</span>
-          <span class="px-3 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06]">#全栈 Web 架构</span>
-          <span class="px-3 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06]">#工业 MES/ERP 系统</span>
+          <span class="px-3 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06]">#极简电影感全栈个人站</span>
+          <span class="px-3 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06]">#可信数据工程</span>
+          <span class="px-3 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06]">#Solid.js 架构</span>
         </div>
       </div>
     </section>

@@ -7,46 +7,15 @@ interface ProjectsPageProps {
 }
 
 export const ProjectsPage: Component<ProjectsPageProps> = (props) => {
-  const [activeCategory, setActiveCategory] = createSignal<'all' | 'aigc' | 'web' | 'data'>('all');
+  const [activeCategory, setActiveCategory] = createSignal<'all' | 'data' | 'web'>('all');
 
   const categories = [
     { id: 'all', label: '全部项目 (All)' },
-    { id: 'aigc', label: 'AIGC 视觉与创意' },
+    { id: 'data', label: '数据工程与自动化' },
     { id: 'web', label: '全栈 Web 与架构' },
-    { id: 'data', label: '工业 MES 与数据智能' },
   ] as const;
 
   const projects = [
-    {
-      category: 'aigc',
-      tag: 'AIGC WORKFLOW',
-      title: 'ComfyUI 节点式视觉创意管线与多模态生成流',
-      description:
-        '深度运用 ComfyUI 节点式架构，搭建涵盖角色一致性保持、精细光影控制与多风格迁移的高自由度 AIGC 生成管线。将 8 年独立视频创作者的构图与色调直觉融入算法调优，赋能高质量商业视觉产出。',
-      highlights: [
-        '基于 SDXL 与 Flux 模型的精细 ControlNet 姿态与深度约束',
-        '多节点自动化批处理与高分辨率二次潜空间重绘（Hires Fix）',
-        '针对商业广告与分镜设计的风格预设和 Prompt 体系化工程',
-      ],
-      techs: ['ComfyUI', 'SDXL / Flux', 'Python', 'AIGC 调优', '分镜美学'],
-      linkText: '查看代码与工作流',
-      linkHref: 'https://github.com/Chan-Kris',
-    },
-    {
-      category: 'web',
-      tag: 'FULL-STACK WEB',
-      title: 'Kris® 2.0 极简电影感个人站架构',
-      description:
-        '探索前端极致性能体验与前沿视觉风格的落地。基于 Solid.js 细粒度响应式更新机制，实现首屏毫秒级加载；定制 CSS 遮罩双层高光液体玻璃效果（.liquid-glass）与硬件加速的全屏视频高斯模糊景深切换。',
-      highlights: [
-        '无虚拟 DOM 开销，生产打包 JS 体积压缩至 12KB (gzip)',
-        '自动化 Vite 构建插件，每次打包自动生成标准 PHP 入口',
-        'GPU 硬件加速的单页滚动高斯模糊过渡与全端平滑响应式布局',
-      ],
-      techs: ['Solid.js', 'Vite 6', 'TypeScript', 'Tailwind CSS', 'PHP 边缘交付'],
-      linkText: 'GitHub 仓库开源',
-      linkHref: 'https://github.com/Chan-Kris/personal-site-2.0',
-    },
     {
       category: 'data',
       tag: 'DATA ENGINEERING & AGENT',
@@ -65,49 +34,19 @@ export const ProjectsPage: Component<ProjectsPageProps> = (props) => {
       isCaseStudy: true,
     },
     {
-      category: 'data',
-      tag: 'ENTERPRISE MES',
-      title: '工业 MES 制造执行业务建模与生产数据看板',
+      category: 'web',
+      tag: 'FULL-STACK WEB',
+      title: 'Kris® 2.0 极简电影感个人站架构',
       description:
-        '立足于一线企业级制造执行系统（MES）与 ERP 实施经验，针对多工序复杂车间现场的物料周转、设备稼动率与工艺良率痛点，设计打通端到端业务闭环的高实时性数据看板。',
+        '探索前端极致性能体验与前沿视觉风格的落地。基于 Solid.js 细粒度响应式更新机制，实现首屏毫秒级加载；定制 CSS 遮罩双层高光液体玻璃效果（.liquid-glass）与硬件加速的全屏视频高斯模糊景深切换。',
       highlights: [
-        '工业车间核心业务流程建模与跨工序生产数据指标抽取',
-        '基于 Python / Pandas 搭建高效数据清洗管道与报表自动生成',
-        '直面企业客户实际交付，具备高可用性与复杂业务容错设计',
+        '无虚拟 DOM 开销，生产打包 JS 体积压缩至 12KB (gzip)',
+        '自动化 Vite 构建插件，每次打包自动生成标准 PHP 入口',
+        'GPU 硬件加速的单页滚动高斯模糊过渡与全端平滑响应式布局',
       ],
-      techs: ['Python', 'MySQL', 'Docker', 'MES 业务架构', '数据看板可视化'],
-      linkText: '交流咨询',
-      linkHref: '#contact',
-    },
-    {
-      category: 'data',
-      tag: 'AI ANALYTICS',
-      title: 'AI 驱动的数据智能分析与时序趋势洞察工具',
-      description:
-        '结合现代 LLM 智能体能力与传统统计分析方法，开发针对中小型业务指标的轻量化自动化数据分析工具。支持自然语言提问提取多维指标、自动识别异常波动并生成图表洞察报告。',
-      highlights: [
-        '自然语言到 SQL / 数据分析代码的动态生成与沙箱验证',
-        '多维时序数据趋势预测与结构化业务异常智能诊断',
-        '一键导出交互式分析报告与业务决策建议',
-      ],
-      techs: ['Python', 'LLM Agent', '数据挖掘', 'Docker', 'RESTful API'],
-      linkText: '探索更多',
-      linkHref: 'https://github.com/Chan-Kris',
-    },
-    {
-      category: 'aigc',
-      tag: 'MULTIMEDIA CRAFT',
-      title: '独立视频叙事与高质感后期调色工程',
-      description:
-        '自 2016 年起持续探索的视觉内容创作实践，精通影视级色彩科学、剪辑节奏把控与声画同步设计。为各类数字产品宣传、艺术短片及个人表达提供兼具思想深度与视觉冲击力的最终成片。',
-      highlights: [
-        '熟练驾驭 Final Cut Pro、Premiere Pro 与 Photoshop 工作流',
-        '精通影视 Log 曲线色彩还原、胶片质感模拟与风格化调色',
-        '从概念脚本编写、分镜绘制到后期特效合成的全流程闭环',
-      ],
-      techs: ['Final Cut Pro', 'Premiere Pro', 'Photoshop', '色彩科学', '视效合成'],
-      linkText: '了解作品集',
-      linkHref: '#contact',
+      techs: ['Solid.js', 'Vite 6', 'TypeScript', 'Tailwind CSS', 'PHP 边缘交付'],
+      linkText: 'GitHub 仓库开源',
+      linkHref: 'https://github.com/Chan-Kris/personal-site-2.0',
     },
   ];
 
