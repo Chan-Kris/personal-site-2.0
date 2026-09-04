@@ -31,7 +31,7 @@ export const About: Component = () => {
       {/* Header */}
       <div class="mb-16 sm:mb-20 text-center sm:text-left">
         <span class="text-xs uppercase tracking-[0.25em] text-muted-foreground/80 font-mono block mb-3">
-          02 / JOURNEY & NARRATIVE
+          03 / JOURNEY & NARRATIVE
         </span>
         <h2 class="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-foreground font-display">
           跨界轨迹与 <em class="not-italic text-muted-foreground">经历沉淀</em>

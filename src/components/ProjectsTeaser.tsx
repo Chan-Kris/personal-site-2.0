@@ -14,7 +14,7 @@ export const ProjectsTeaser: Component<ProjectsTeaserProps> = (props) => {
         <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div class="max-w-2xl">
             <span class="text-xs uppercase tracking-[0.25em] text-muted-foreground/80 font-mono block mb-3">
-              03 / PRACTICE & WORKS
+              01 / PRACTICE & WORKS
             </span>
             <h2 class="text-2xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-foreground font-display mb-4">
               精选实践与 <em class="not-italic text-muted-foreground">造物成果</em>

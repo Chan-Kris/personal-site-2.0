@@ -10,9 +10,9 @@ export const Navbar: Component<NavbarProps> = (props) => {
 
   const navLinks = [
     { name: '首页', view: 'home' as const, anchor: '#home' },
+    { name: '实践成果', view: 'projects' as const, anchor: '#/projects', isPage: true },
     { name: '专业技能', view: 'home' as const, anchor: '#skills' },
     { name: '经历历程', view: 'home' as const, anchor: '#about' },
-    { name: '实践成果', view: 'projects' as const, anchor: '#/projects', isPage: true },
     { name: '联系方式', view: 'home' as const, anchor: '#contact' },
   ];
 

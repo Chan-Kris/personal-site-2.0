@@ -49,7 +49,7 @@ export const Skills: Component = () => {
       {/* Section Header */}
       <div class="mb-16 sm:mb-20 text-center sm:text-left">
         <span class="text-xs uppercase tracking-[0.25em] text-muted-foreground/80 font-mono block mb-3">
-          01 / CAPABILITIES & CRAFT
+          02 / CAPABILITIES & CRAFT
         </span>
         <h2 class="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-foreground font-display">
           专业技能与 <em class="not-italic text-muted-foreground">技术矩阵</em>

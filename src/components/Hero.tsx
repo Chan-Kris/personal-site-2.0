@@ -26,7 +26,7 @@ export const Hero: Component<HeroProps> = (props) => {
       {/* Action Buttons */}
       <div class="animate-fade-rise-delay-2 mt-12 flex flex-col sm:flex-row items-center gap-4">
         <a
-          href="#skills"
+          href="#projects"
           class="liquid-glass rounded-full px-12 py-4 text-base text-foreground inline-flex items-center justify-center font-medium tracking-wide hover:scale-[1.03] transition-transform duration-200 cursor-pointer select-none"
         >
           开启旅程

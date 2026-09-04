@@ -134,9 +134,9 @@ export const App: Component = () => {
           <Match when={currentView() === 'home'}>
             <div class="space-y-12">
               <Hero onExploreProjects={() => navigateTo('projects')} />
+              <ProjectsTeaser onExplore={() => navigateTo('projects')} />
               <Skills />
               <About />
-              <ProjectsTeaser onExplore={() => navigateTo('projects')} />
               <Contact />
             </div>
           </Match>
