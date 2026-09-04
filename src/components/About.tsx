@@ -20,8 +20,8 @@ export const About: Component = () => {
       year: 'NOW',
       period: '跃迁 · AI 全栈与前沿范式探索',
       role: '全栈工程师 · AI 数据分析 · AIGC 创作者',
-      desc: '将八年视觉创作者的审美直觉与企业级系统架构的严谨沉淀合二为一，深度融合 AI 数据分析与 ComfyUI 节点式生成流。积极实践现代 Vibe Coding，以 Solid.js / Node.js 等全栈技术构建具有极致响应与电影感美学的数字产品。',
-      tags: ['AI 数据分析', 'AIGC 创作', 'ComfyUI', 'Vibe Coding', '全栈交付'],
+      desc: '将八年视觉创作者的审美直觉与企业级系统架构的严谨沉淀合二为一，深度融合 AI 数据分析与 ComfyUI 节点式生成流。以现代全栈工程思维与敏捷开发实践，借助 Solid.js / Node.js 等全栈技术构建具有极致响应与电影感美学的数字产品。',
+      tags: ['AI 数据分析', 'AIGC 创作', 'ComfyUI', '智能体工作流', '全栈交付'],
       current: true,
     },
   ];
