@@ -1,3 +1,7 @@
+# Agent & Workspace Metadata
+.zcode/
+.agents/
+
 # Logs
 logs
 *.log
