@@ -48,7 +48,8 @@
 | **首屏视觉 (Hero)** | `#home` | 电影级 H1 标题大字、全栈工程师定位文案、核心行动按钮 |
 | **专业技能 (Skills)** | `#skills` | 5 大能力矩阵：AI 前沿范式 (ComfyUI / Vibe Coding / AI 数据分析)、前端工程、后端服务、数据与基础云、视觉与后期剪辑 |
 | **经历历程 (About)** | `#about` | 2016 独立创作者 ➔ 2019 工业 MES/ERP 实施顾问 ➔ 当前 AI 全栈跃迁的故事线 |
-| **实践成果 (Projects)** | `#projects` | ComfyUI 视觉创意流、高性能个人站架构、工业数据看板实战卡片 |
+| **实践成果入口 (Projects Teaser)** | `#projects` | 主页轻量级探索入口卡片，一键导航直达独立作品页面 |
+| **实践成果独立页 (Projects Page)** | `#/projects` | 独立路由页面：多维度分类过滤（AIGC / Web / 工业数据）、多模块详细亮点卡片、返回首页控制 |
 | **联系方式 (Contact)** | `#contact` | 邮箱一键点击复制（带反馈 Toast）、GitHub 开源主页直达、全站页脚 |
 
 ---

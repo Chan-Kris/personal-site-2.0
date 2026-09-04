@@ -1,23 +1,71 @@
-import { createSignal, onMount, onCleanup, type Component } from 'solid-js';
+import { createSignal, onMount, onCleanup, Show, type Component } from 'solid-js';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Skills } from './components/Skills';
 import { About } from './components/About';
-import { Projects } from './components/Projects';
+import { ProjectsTeaser } from './components/ProjectsTeaser';
+import { ProjectsPage } from './components/ProjectsPage';
 import { Contact } from './components/Contact';
 
 export const App: Component = () => {
+  const [currentView, setCurrentView] = createSignal<'home' | 'projects'>('home');
   const [isScrolled, setIsScrolled] = createSignal(false);
 
+  const navigateTo = (view: 'home' | 'projects', anchor?: string) => {
+    setCurrentView(view);
+    if (view === 'projects') {
+      window.location.hash = '#/projects';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      if (anchor && anchor !== '#home' && anchor !== '#/home') {
+        window.location.hash = anchor;
+        setTimeout(() => {
+          const target = document.querySelector(anchor);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 60);
+      } else {
+        window.location.hash = '#home';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
+
   onMount(() => {
+    const syncRouteFromHash = () => {
+      const hash = window.location.hash;
+      if (hash === '#/projects' || hash === '#projects') {
+        setCurrentView('projects');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        setCurrentView('home');
+        if (hash && hash !== '#home' && hash !== '#/home' && !hash.startsWith('#/')) {
+          setTimeout(() => {
+            const target = document.querySelector(hash);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 80);
+        }
+      }
+    };
+
+    syncRouteFromHash();
+    window.addEventListener('hashchange', syncRouteFromHash);
+
     const handleScroll = () => {
-      // 当页面向下滚动超过 60px 时触发高斯模糊平滑过渡
+      // 页面向下滚动超过 60px 时触发高斯模糊过渡
       setIsScrolled(window.scrollY > 60);
     };
 
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    onCleanup(() => window.removeEventListener('scroll', handleScroll));
+
+    onCleanup(() => {
+      window.removeEventListener('hashchange', syncRouteFromHash);
+      window.removeEventListener('scroll', handleScroll);
+    });
   });
 
   return (
@@ -29,7 +77,7 @@ export const App: Component = () => {
         muted
         playsinline
         class={`fixed inset-0 w-full h-full object-cover z-0 pointer-events-none transition-all duration-700 ease-out will-change-transform ${
-          isScrolled()
+          isScrolled() || currentView() === 'projects'
             ? 'filter blur-md sm:blur-xl scale-[1.04] opacity-50'
             : 'filter-none scale-100 opacity-100'
         }`}
@@ -40,23 +88,37 @@ export const App: Component = () => {
         />
       </video>
 
-      {/* Dynamic Ambient Blur & Darkening Overlay when scrolled down */}
+      {/* Dynamic Ambient Blur & Darkening Overlay */}
       <div
         class={`fixed inset-0 pointer-events-none z-0 transition-all duration-700 ease-out ${
-          isScrolled() ? 'bg-background/50 backdrop-blur-sm' : 'bg-transparent'
+          isScrolled() || currentView() === 'projects'
+            ? 'bg-background/50 backdrop-blur-sm'
+            : 'bg-transparent'
         }`}
       />
 
       {/* Navigation */}
-      <Navbar />
+      <Navbar currentView={currentView} onNavigate={navigateTo} />
 
-      {/* Main Sections */}
-      <main class="relative z-10 flex-1 flex flex-col space-y-12">
-        <Hero />
-        <Skills />
-        <About />
-        <Projects />
-        <Contact />
+      {/* Main Content Area */}
+      <main class="relative z-10 flex-1 flex flex-col">
+        <Show
+          when={currentView() === 'projects'}
+          fallback={
+            <div class="space-y-12">
+              <Hero onExploreProjects={() => navigateTo('projects')} />
+              <Skills />
+              <About />
+              <ProjectsTeaser onExplore={() => navigateTo('projects')} />
+              <Contact />
+            </div>
+          }
+        >
+          <ProjectsPage
+            onBack={() => navigateTo('home', '#home')}
+            onContact={() => navigateTo('home', '#contact')}
+          />
+        </Show>
       </main>
 
       {/* Footer */}
@@ -74,9 +136,19 @@ export const App: Component = () => {
           </div>
 
           <div>
-            <a href="#home" class="hover:text-foreground transition-colors">
-              返回顶部 ↑
-            </a>
+            {currentView() === 'projects' ? (
+              <button
+                type="button"
+                onClick={() => navigateTo('home', '#home')}
+                class="hover:text-foreground transition-colors cursor-pointer"
+              >
+                返回首页 ↑
+              </button>
+            ) : (
+              <a href="#home" class="hover:text-foreground transition-colors">
+                返回顶部 ↑
+              </a>
+            )}
           </div>
         </div>
       </footer>

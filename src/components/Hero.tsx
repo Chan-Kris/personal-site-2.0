@@ -1,6 +1,10 @@
 import { type Component } from 'solid-js';
 
-export const Hero: Component = () => {
+interface HeroProps {
+  onExploreProjects?: () => void;
+}
+
+export const Hero: Component<HeroProps> = (props) => {
   return (
     <section
       id="home"
@@ -27,12 +31,25 @@ export const Hero: Component = () => {
         >
           开启旅程
         </a>
-        <a
-          href="#contact"
-          class="px-8 py-4 text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide"
-        >
-          探索合作机会 →
-        </a>
+
+        {props.onExploreProjects ? (
+          <button
+            type="button"
+            onClick={props.onExploreProjects}
+            class="px-8 py-4 text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide flex items-center space-x-1.5 cursor-pointer"
+          >
+            <span>探索实践成果</span>
+            <span>→</span>
+          </button>
+        ) : (
+          <a
+            href="#/projects"
+            class="px-8 py-4 text-sm text-muted-foreground hover:text-foreground transition-colors tracking-wide flex items-center space-x-1.5"
+          >
+            <span>探索实践成果</span>
+            <span>→</span>
+          </a>
+        )}
       </div>
     </section>
   );
