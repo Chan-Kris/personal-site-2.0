@@ -48,6 +48,22 @@ export const ProjectsPage: Component<ProjectsPageProps> = (props) => {
     },
     {
       category: 'data',
+      tag: 'DATA ENGINEERING & AGENT',
+      title: '亚马逊数据自动化收集并分析',
+      description:
+        '构建一套高可信、防静默错误的一体化电商数据工程系统。覆盖 3 个产品组、18 个样本、6 张多维数据表与 18 份每日深度报告，让每个数字都可验证、可解释、可恢复。',
+      highlights: [
+        '首创“连续两次完整快照签名校验”机制，彻底杜绝异步渲染产生的半新半旧脏数据',
+        '严谨语义缺失值治理（区分无排名、结构空缺与无效采样），拒绝 0 污染均值与排序',
+        '将 Google Sheets 当作生产数据库，执行动态坐标重算、写入前审计与逐格回读校对',
+        '建立包含事实、组内比较与阈值行动的七维商业分析模型，每日全自动输出可接管报告',
+      ],
+      techs: ['Python', 'AI Agent', 'Google Sheets API', '可信数据工程', '自动化分析'],
+      linkText: '交流与架构复盘',
+      linkHref: '#contact',
+    },
+    {
+      category: 'data',
       tag: 'ENTERPRISE MES',
       title: '工业 MES 制造执行业务建模与生产数据看板',
       description:

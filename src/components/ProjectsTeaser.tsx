@@ -39,10 +39,10 @@ export const ProjectsTeaser: Component<ProjectsTeaserProps> = (props) => {
         {/* Quick Highlights Pills */}
         <div class="relative z-10 mt-8 pt-6 border-t border-white/[0.06] flex flex-wrap items-center gap-3 text-xs text-muted-foreground font-mono">
           <span class="text-muted-foreground/50">精选分类：</span>
+          <span class="px-3 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06]">#亚马逊数据自动化系统</span>
           <span class="px-3 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06]">#AIGC 视觉管线</span>
           <span class="px-3 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06]">#全栈 Web 架构</span>
-          <span class="px-3 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06]">#工业 MES/ERP 数据系统</span>
-          <span class="px-3 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06]">#智能体工作流</span>
+          <span class="px-3 py-1 rounded-lg bg-white/[0.03] border border-white/[0.06]">#工业 MES/ERP 系统</span>
         </div>
       </div>
     </section>
