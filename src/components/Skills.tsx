@@ -6,8 +6,8 @@ export const Skills: Component = () => {
       badge: 'ARTIFICIAL INTELLIGENCE',
       title: 'AI 开发与前沿范式',
       subtitle: '现代 AI 工作流与智能数据应用',
-      skills: ['ComfyUI', 'AIGC 视觉创作', 'AI 数据分析', '智能体工作流', 'Prompt 架构'],
-      desc: '深入 ComfyUI 节点式生成流与 AIGC 创意工程，运用 AI 进行高效数据挖掘与智能体分析，打造高度可扩展的自动化交付链路。',
+      skills: ['ComfyUI', 'AIGC 视觉创作', 'AI 数据分析', 'Vibe Coding', 'Prompt 架构'],
+      desc: '深入 ComfyUI 节点式生成流与 AIGC 创意工程，运用 AI 进行高效数据挖掘分析，推崇现代极速迭代的 Vibe Coding 范式。',
       highlight: true,
     },
     {
